@@ -1,0 +1,4 @@
+wallets-*.json
+wallets-*.csv
+node_modules
+.env

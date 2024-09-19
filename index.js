@@ -3,8 +3,8 @@ import { getDefaultProvider, Wallet, Contract } from "ethers";
 import { writeFile } from "fs/promises";
 
 // ABI
-import abi from "./abi.json" assert { type: "json" };
-import erc20 from "./erc20.json" assert { type: "json" };
+import abi from "./abi.json" with { type: "json" };
+import erc20 from "./erc20.json" with { type: "json" };
 
 // Env
 dotenv.config();

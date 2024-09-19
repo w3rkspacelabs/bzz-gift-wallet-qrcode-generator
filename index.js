@@ -48,7 +48,7 @@ await writeFile(`wallets/wallets-${id}.csv`, walletsCSV.join("\n"));
 console.log({
   filesCreated:{
     json: `wallets/wallets-${id}.json`,
-    json: `wallets/wallets-${id}.csv`
+    csv: `wallets/wallets-${id}.csv`
   }
 })
 // process.exit(0);

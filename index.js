@@ -3,8 +3,8 @@ import { getDefaultProvider, Wallet, Contract } from "ethers";
 import { writeFile } from "fs/promises";
 
 // ABI
-import abi from "./abi.json" assert { type: "json" };
-import erc20 from "./erc20.json" assert { type: "json" };
+import abi from "./abi.json" with { type: "json" };
+import erc20 from "./erc20.json" with { type: "json" };
 
 // Env
 dotenv.config();
@@ -48,7 +48,7 @@ await writeFile(`wallets/wallets-${id}.csv`, walletsCSV.join("\n"));
 console.log({
   filesCreated:{
     json: `wallets/wallets-${id}.json`,
-    json: `wallets/wallets-${id}.csv`
+    csv: `wallets/wallets-${id}.csv`
   }
 })
 // process.exit(0);

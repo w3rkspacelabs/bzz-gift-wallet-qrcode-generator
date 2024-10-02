@@ -11,6 +11,7 @@
 git clone https://github.com/rampall/bzz-gift-wallet-qrcode-generator.git
 cd bzz-gift-wallet-qrcode-generator
 npm install
+cp .env.sample env
 ```
 
 ## 2. Edit `.env`

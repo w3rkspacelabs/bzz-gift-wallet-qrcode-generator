@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { getDefaultProvider, Wallet, Contract } from "ethers";
 import { writeFile } from "fs/promises";
+import { text } from '@clack/prompts';
 
 // ABI
 import abi from "./abi.json" with { type: "json" };
@@ -10,7 +11,6 @@ import erc20 from "./erc20.json" with { type: "json" };
 dotenv.config();
 const {
   RPC,
-  PRIVATE_KEY,
   CONTRACT_ADDRESS,
   BZZ_ADDRESS,
   TOKEN_AMOUNT,
@@ -18,17 +18,27 @@ const {
   WALLET_COUNT,
 } = process.env;
 
+
+
+// process.exit(0);
+const PRIVATE_KEY = await text({
+  message: 'Private key of the funding wallet to use',
+  placeholder: '',
+  initialValue: '',
+  validate(value) {
+    if (value.length === 0) return `Value is required!`;
+  },
+});
+
 console.log({
   RPC,
-  PRIVATE_KEY,
   CONTRACT_ADDRESS,
   BZZ_ADDRESS,
   TOKEN_AMOUNT,
   NATIVE_AMOUNT,
   WALLET_COUNT,
+  PRIVATE_KEY
 });
-
-// process.exit(0);
 
 const wallets = [];
 const walletsCSV = [];
@@ -55,7 +65,8 @@ console.log({
 
 // Wallet setup
 const provider = getDefaultProvider(RPC);
-const wallet = new Wallet(PRIVATE_KEY, provider);
+const pk = PRIVATE_KEY.startsWith('0x') ? PRIVATE_KEY.slice(2) : PRIVATE_KEY;
+const wallet = new Wallet(pk, provider);
 const funder = new Contract(CONTRACT_ADDRESS, abi, wallet, {
   gasLimit: 1_000_000,  
   gasPrice: 1_000_000_000,

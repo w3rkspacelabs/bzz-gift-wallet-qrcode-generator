@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@clack/prompts": "^0.10.1",
     "dotenv": "^16.0.3",
     "ethers": "^5.6.9"
   }
